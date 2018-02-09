@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Appointments>
+  <Appointment>
+    <Region>0</Region>
+    <Even>False</Even>
+  </Appointment>
+  <Appointment>
+    <Region>1</Region>
+    <Even>True</Even>
+  </Appointment>
+</Appointments>
