@@ -10,9 +10,9 @@ namespace AbfallAPI.Models.DAO
     {
         private XElement Data;
 
-        public YellowWasteAppointmentsDao()
+        public YellowWasteAppointmentsDao(string wwwPath)
         {
-            string pathToFile = "Data/YellowWasteAppointments.xml";
+            string pathToFile = wwwPath + "/Data/YellowWasteAppointments.xml";
             Data = XDocument.Load(pathToFile).Root;
         }
 

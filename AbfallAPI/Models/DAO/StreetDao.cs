@@ -10,10 +10,10 @@ namespace AbfallAPI.Models.DAO
         private XElement Data;
         private ZoneDao ZoneDao;
 
-        public StreetDao()
+        public StreetDao(string wwwPath)
         {
-            ZoneDao = new ZoneDao();
-            string pathToFile = "Data/Streets.xml";
+            ZoneDao = new ZoneDao(wwwPath);
+            string pathToFile = wwwPath + "/Data/Streets.xml";
             Data = XDocument.Load(pathToFile).Root;
         }
 

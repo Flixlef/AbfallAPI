@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Views\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +15,15 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Data\BabyWasteAppointments.xml" />
+    <None Include="wwwroot\Data\BlueWasteAppointments.xml" />
+    <None Include="wwwroot\Data\GreyWasteAppointments.xml" />
+    <None Include="wwwroot\Data\Streets.xml" />
+    <None Include="wwwroot\Data\YellowWasteAppointments.xml" />
+    <None Include="wwwroot\Data\Zones.xml" />
   </ItemGroup>
 
 </Project>

@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using AbfallAPI.Models;
 using AbfallAPI.Models.Appointments;
 using AbfallAPI.Models.DAO;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ namespace AbfallAPI.Controllers
     [Route("api/[controller]")]
     public class AppointmentsController : Controller
     {
+        private IHostingEnvironment _env;
         private ZoneDao Zones;
         private StreetDao Streets;
         private YellowWasteAppointmentsDao YellowWasteAppointments;
@@ -22,14 +24,16 @@ namespace AbfallAPI.Controllers
         private ResidualWasteAppointmentDao ResidualWasteAppointments;
         private BabyWasteAppointmentsDao BabyWasteAppointments;
 
-        public AppointmentsController()
+        public AppointmentsController(IHostingEnvironment env)
         {
-            Streets = new StreetDao();
-            Zones = new ZoneDao();
-            YellowWasteAppointments = new YellowWasteAppointmentsDao();
-            BlueWasteAppointments = new BlueWasteAppointmentDao();
-            ResidualWasteAppointments = new ResidualWasteAppointmentDao();
-            BabyWasteAppointments = new BabyWasteAppointmentsDao();
+            _env = env;
+            string WwwPath = _env.WebRootPath;
+            Streets = new StreetDao(WwwPath);
+            Zones = new ZoneDao(WwwPath);
+            YellowWasteAppointments = new YellowWasteAppointmentsDao(WwwPath);
+            BlueWasteAppointments = new BlueWasteAppointmentDao(WwwPath);
+            ResidualWasteAppointments = new ResidualWasteAppointmentDao(WwwPath);
+            BabyWasteAppointments = new BabyWasteAppointmentsDao(WwwPath);
         }
 
         public IActionResult GetAll(string id)
@@ -51,11 +55,13 @@ namespace AbfallAPI.Controllers
             }
 
             nextWasteAppointments.Street = street;
+            /*
             nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Gelber Sack", GetNextYellowWasteAppointment(street)));
             nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Blaue Tonne", GetNextBlueWasteAppointment(street)));
             nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Graue Tonne", GetNextGreyWasteAppointment(street)));
             nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Windelsack", GetNextBabyWasteAppointment(street)));
             nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Biotonne", GetNextOrganicWasteAppointment(street)));
+            */
 
             return new ObjectResult(nextWasteAppointments);
         }

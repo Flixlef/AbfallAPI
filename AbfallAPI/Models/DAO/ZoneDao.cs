@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -8,9 +9,9 @@ namespace AbfallAPI.Models.DAO
     {
         private XElement Data;
 
-        public ZoneDao()
+        public ZoneDao(string wwwPath)
         {
-            string pathToFile = "Data/Zones.xml";
+            string pathToFile = wwwPath + "/Data/Zones.xml";
             Data = XDocument.Load(pathToFile).Root;
         }
 
