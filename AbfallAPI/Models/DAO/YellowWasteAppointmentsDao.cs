@@ -19,7 +19,7 @@ namespace AbfallAPI.Models.DAO
         public DateTime GetNextYellowWasteAppointment(Street street)
         {
             return DateTime.Parse(Data.Descendants("Appointment")
-                .Where(x => DateTime.Parse(x.Element("Date").Value) >= DateTime.Now.Date)
+                .Where(x => DateTime.ParseExact(x.Element("Date").Value, "dd.mm.yyyy", null) >= DateTime.Now.Date)
                 .Where(x => x.Element("ZoneId").Value == street.Zone.Id.ToString())
                 .OrderBy(x => DateTime.Parse(x.Element("Date").Value))
                 .FirstOrDefault()
