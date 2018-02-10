@@ -29,12 +29,12 @@ namespace AbfallAPI.Models.DAO
             }
         }
 
-        public Dictionary<string, string> GetAllStreets()
+        public Dictionary<int, string> GetAllStreets()
         {
             return Data.Descendants("Street")
                 .Select(x => new
                 {
-                    Key = x.Element("Id").Value,
+                    Key = Int32.Parse(x.Element("Id").Value),
                     Value = x.Element("Name").Value
                 })
                 .ToDictionary(k => k.Key, v => v.Value);
