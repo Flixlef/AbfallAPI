@@ -54,11 +54,11 @@ namespace AbfallAPI.Controllers
             }
 
             nextWasteAppointments.Street = street;
-            nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Gelber Sack", GetNextYellowWasteAppointment(street)));
-            nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Blaue Tonne", GetNextBlueWasteAppointment(street)));
-            nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Graue Tonne", GetNextGreyWasteAppointment(street)));
-            nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Windelsack", GetNextBabyWasteAppointment(street)));
-            nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Biotonne", GetNextOrganicWasteAppointment(street)));
+            nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Gelber Sack", GetNextYellowWasteAppointment(street), "yellow"));
+            nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Blaue Tonne", GetNextBlueWasteAppointment(street), "blue"));
+            nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Graue Tonne", GetNextGreyWasteAppointment(street), "grey"));
+            nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Windelsack", GetNextBabyWasteAppointment(street), "baby"));
+            nextWasteAppointments.WasteAppointments.Add(new WasteAppointment("Biotonne", GetNextOrganicWasteAppointment(street), "organic"));
 
             return new ObjectResult(nextWasteAppointments);
         }
