@@ -18,12 +18,14 @@ namespace AbfallAPI.Models.DAO
 
         public DateTime GetNextBlueWasteAppointment(Street street)
         {
-            return DateTime.Parse(Data.Descendants("Appointment")
-                .Where(x => DateTime.ParseExact(x.Element("Date").Value, "dd.mm.yyyy", null) >= DateTime.Now.Date)
+            string now = DateTime.Now.ToString("dd.mm.yyyy");
+
+            return DateTime.ParseExact(Data.Descendants("Appointment")
+                .Where(x => DateTime.ParseExact(x.Element("Date").Value, "dd.mm.yyyy", null) >= DateTime.ParseExact(now, "dd.mm.yyyy", null))
                 .Where(x => x.Element("Zone").Value == street.Zone.Id.ToString())
                 .OrderBy(x => DateTime.ParseExact(x.Element("Date").Value, "dd.mm.yyyy", null))
                 .FirstOrDefault()
-                .Element("Date").Value
+                .Element("Date").Value, "dd.mm.yyyy", null
             );
         }
     }
